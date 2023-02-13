@@ -17,6 +17,7 @@
  */
 
 const FRONTEND_SVC_URL = 'http://localhost:9098';
+const FRONTEND_API_KEY = '';
 
 export async function getAllQuotes() {
     const response = await fetch(`${FRONTEND_SVC_URL}/quotes.json`);
@@ -41,7 +42,11 @@ export async function getAllQuotes() {
 }
 
 export async function getHomePage() {
-    const response = await fetch(`${FRONTEND_SVC_URL}`, { credentials: 'include' });
+    const response = await fetch(`${FRONTEND_SVC_URL}`, {
+        headers: {
+            'API-Key': FRONTEND_API_KEY
+        }
+    });
     const data = await response.json();
 
     if (!response.ok) {
@@ -52,7 +57,11 @@ export async function getHomePage() {
 }
 
 export async function getSingleProduct(productId) {
-    const response = await fetch(`${FRONTEND_SVC_URL}/product/${productId}`, { credentials: 'include' });
+    const response = await fetch(`${FRONTEND_SVC_URL}/product/${productId}`, { 
+        headers: {
+            'API-Key': FRONTEND_API_KEY
+        }
+    });
     const data = await response.json();
 
     if (!response.ok) {
@@ -67,6 +76,7 @@ export async function addProductToCart(requestData) {
         method: 'POST',
         body: JSON.stringify(requestData),
         headers: {
+            'API-Key': FRONTEND_API_KEY,
             'Content-Type': 'application/json'
         },
         credentials: 'include'
@@ -81,7 +91,11 @@ export async function addProductToCart(requestData) {
 }
 
 export async function getCartPage() {
-    const response = await fetch(`${FRONTEND_SVC_URL}/cart`, { credentials: 'include' });
+    const response = await fetch(`${FRONTEND_SVC_URL}/cart`, { 
+        headers: {
+            'API-Key': FRONTEND_API_KEY
+        }
+    });
     const data = await response.json();
 
     if (!response.ok) {
@@ -96,6 +110,7 @@ export async function checkout(requestData) {
         method: 'POST',
         body: JSON.stringify(requestData),
         headers: {
+            'API-Key': FRONTEND_API_KEY,
             'Content-Type': 'application/json'
         },
         credentials: 'include'
@@ -114,6 +129,7 @@ export async function changeCurrency(requestData) {
         method: 'POST',
         body: JSON.stringify(requestData),
         headers: {
+            'API-Key': FRONTEND_API_KEY,
             'Content-Type': 'application/json'
         },
         credentials: 'include'
@@ -128,7 +144,11 @@ export async function changeCurrency(requestData) {
 }
 
 export async function getMetadata() {
-    const response = await fetch(`${FRONTEND_SVC_URL}/metadata`, { credentials: 'include' });
+    const response = await fetch(`${FRONTEND_SVC_URL}/metadata`, { 
+        headers: {
+            'API-Key': FRONTEND_API_KEY
+        }
+    });
     const data = await response.json();
 
     if (!response.ok) {
@@ -139,7 +159,12 @@ export async function getMetadata() {
 }
 
 export async function emptyCart() {
-    const response = await fetch(`${FRONTEND_SVC_URL}/cart/empty`, { credentials: 'include', method: 'POST' });
+    const response = await fetch(`${FRONTEND_SVC_URL}/cart/empty`, { 
+        headers: {
+            'API-Key': FRONTEND_API_KEY
+        }, 
+        method: 'POST' 
+    });
     const data = await response.json();
 
     if (!response.ok) {
