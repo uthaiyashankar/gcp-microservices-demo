@@ -16,8 +16,8 @@
  *  under the License.
  */
 
-const FRONTEND_SVC_URL = 'http://localhost:9098';
-const FRONTEND_API_KEY = '';
+const FRONTEND_SVC_URL = process.env.REACT_APP_FRONTEND_SVC_URL;
+const FRONTEND_API_KEY = process.env.REACT_APP_FRONTEND_API_KEY;
 
 export async function getAllQuotes() {
     const response = await fetch(`${FRONTEND_SVC_URL}/quotes.json`);
@@ -57,7 +57,7 @@ export async function getHomePage() {
 }
 
 export async function getSingleProduct(productId) {
-    const response = await fetch(`${FRONTEND_SVC_URL}/product/${productId}`, { 
+    const response = await fetch(`${FRONTEND_SVC_URL}/product/${productId}`, {
         headers: {
             'API-Key': FRONTEND_API_KEY
         }
@@ -78,8 +78,7 @@ export async function addProductToCart(requestData) {
         headers: {
             'API-Key': FRONTEND_API_KEY,
             'Content-Type': 'application/json'
-        },
-        credentials: 'include'
+        }
     });
     const data = await response.json();
 
@@ -91,7 +90,7 @@ export async function addProductToCart(requestData) {
 }
 
 export async function getCartPage() {
-    const response = await fetch(`${FRONTEND_SVC_URL}/cart`, { 
+    const response = await fetch(`${FRONTEND_SVC_URL}/cart`, {
         headers: {
             'API-Key': FRONTEND_API_KEY
         }
@@ -112,8 +111,7 @@ export async function checkout(requestData) {
         headers: {
             'API-Key': FRONTEND_API_KEY,
             'Content-Type': 'application/json'
-        },
-        credentials: 'include'
+        }
     });
     const data = await response.json();
 
@@ -131,8 +129,7 @@ export async function changeCurrency(requestData) {
         headers: {
             'API-Key': FRONTEND_API_KEY,
             'Content-Type': 'application/json'
-        },
-        credentials: 'include'
+        }
     });
     const data = await response.json();
 
@@ -144,7 +141,7 @@ export async function changeCurrency(requestData) {
 }
 
 export async function getMetadata() {
-    const response = await fetch(`${FRONTEND_SVC_URL}/metadata`, { 
+    const response = await fetch(`${FRONTEND_SVC_URL}/metadata`, {
         headers: {
             'API-Key': FRONTEND_API_KEY
         }
@@ -159,11 +156,11 @@ export async function getMetadata() {
 }
 
 export async function emptyCart() {
-    const response = await fetch(`${FRONTEND_SVC_URL}/cart/empty`, { 
+    const response = await fetch(`${FRONTEND_SVC_URL}/cart/empty`, {
+        method: 'POST',
         headers: {
             'API-Key': FRONTEND_API_KEY
-        }, 
-        method: 'POST' 
+        }
     });
     const data = await response.json();
 
