@@ -133,6 +133,8 @@ service "CheckoutService" on new grpc:Listener(9094) {
             log:printInfo(string `Order confirmation email sent to ${request.email}`);
         }
 
+        // test
+
         return {'order};
     }
 
