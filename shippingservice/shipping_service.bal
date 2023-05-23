@@ -52,6 +52,8 @@ service "ShippingService" on new grpc:Listener(9095) {
         float cents = cost % 1;
         int dollars = <int>(cost - cents);
 
+        // adding some comments. 
+
         return {
             cost_usd: {currency_code: "USD", nanos: <int>(cents * FRACTION_SIZE), units: dollars}
         };
